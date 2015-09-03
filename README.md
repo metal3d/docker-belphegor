@@ -6,9 +6,21 @@ Belphegor makes use of [Ghost.py](https://github.com/jeanphix/Ghost.py) to creat
 
 ## With docker
 
+Just lauch:
+
+```
 docker run -it -p 8000:8000 metal3d/belphegor 
+```
 
 Then go to `http://localhost:8000/?url=http://a-page-url`
+
+You may set gunicorn worker number with environment variable:
+
+```
+docker run -it -p 8000:8000 -e NUMWORKER=8 metal3d/belphegor 
+```
+
+
 
 ## Without docker
 
