@@ -20,16 +20,47 @@ You may set gunicorn worker number with environment variable:
 docker run -it -p 8000:8000 -e NUMWORKER=8 metal3d/belphegor 
 ```
 
+If you launch service behind a proxy, you may give environment variable to let belphegor to use it:
+
+```
+docker run -it -p 8000:8000 -e http_prowy=http://PROXY:PORT metal3d/belphegor
+```
 
 
 ## Without docker
 
-just launch 
+You'll need PySide or PyQt4, note that PySide is no longer maintained. It's recommanded to use your package distribution to install PyQt4
+
+```
+# Debian, Ubuntu
+apt-get install python-qt4
+
+# Fedora, CentOS
+dnf install python-qt4
+
+```
+
+Then install Ghost.py
+
+```
+pip install Ghost.py
+```
+
+Get this repository:
+
+```
+git clone https://github.com/metal3d/docker-belphegor.git
+cd docker-belphegor
+```
+
+
+Just launch 
+
 
 ```
 python main.py
 
-# or
+# or use gunicorn (installed with `pip install gunicorn`)
 
 gunicorn main:app -b :8000 -w 4 
 
