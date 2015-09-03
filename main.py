@@ -1,6 +1,5 @@
 from ghost import Ghost
 from cgi import parse_qs, escape
-import uuid
 
 from PyQt4.QtCore import QBuffer, QIODevice
 
