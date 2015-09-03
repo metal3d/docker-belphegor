@@ -19,8 +19,6 @@ def app(environ, start_response):
 
     if url:
         try:
-           #fname = "/tmp/" + str(uuid.uuid4()) + ".jpg"
-
             with ghost.start() as session:
                 # manage proxy
                 if "http_proxy" in environ:
@@ -58,6 +56,7 @@ def app(environ, start_response):
         except Exception, e:
             response_body = [
                 "There were an error...",
+                "\n",
                 str(e)
             ]
             status = "500 InternalServerError"
