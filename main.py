@@ -1,3 +1,4 @@
+import os
 from ghost import Ghost
 from cgi import parse_qs, escape
 
@@ -21,8 +22,8 @@ def app(environ, start_response):
         try:
             with ghost.start() as session:
                 # manage proxy
-                if "http_proxy" in environ:
-                    host, port = environ["http_proxy"].replace("http://","").split(":")
+                if "http_proxy" in os.environ:
+                    host, port = os.environ["http_proxy"].replace("http://","").split(":")
                     session.set_proxy("http", host=host, port=int(port))
 
                 # set viewport size
