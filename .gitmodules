@@ -1,0 +1,3 @@
+[submodule "belphegor"]
+	path = belphegor
+	url = https://github.com/metal3d/belphegor.git
