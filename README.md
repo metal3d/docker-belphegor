@@ -23,7 +23,7 @@ docker run -it -p 8000:8000 -e NUMWORKER=8 metal3d/belphegor
 If you launch service behind a proxy, you may give environment variable to let belphegor to use it:
 
 ```
-docker run -it -p 8000:8000 -e http_prowy=http://PROXY:PORT metal3d/belphegor
+docker run -it -p 8000:8000 -e http_proxy=http://PROXY:PORT metal3d/belphegor
 ```
 
 # Params
