@@ -16,7 +16,10 @@ RUN pip install Ghost.py gunicorn
 
 RUN mkdir -p /root/rpmbuild/specs
 ADD msttcorefonts-2.5-1.spec /root/rpmbuild/spec/msttcorefonts-2.5-1.spec
-RUN  rpmbuild -bb /root/rpmbuild/spec/msttcorefonts-2.5-1.spec && \
+RUN  count=0; while [ ! -f /root/rpmbuild/RPMS/noarch/msttcorefonts-2.5-1.noarch.rpm ] && [ $count -lt 10 ]; do \
+         rpmbuild -bb /root/rpmbuild/spec/msttcorefonts-2.5-1.spec; \
+         count=$((count+1)); \
+     done && \
      dnf install -y /root/rpmbuild/RPMS/noarch/msttcorefonts-2.5-1.noarch.rpm && \
      rm -rf /root/rpmbuild && \
      dnf clean all
