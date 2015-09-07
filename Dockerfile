@@ -17,7 +17,7 @@ RUN pip install Ghost.py gunicorn
 RUN mkdir -p /root/rpmbuild/specs
 ADD msttcorefonts-2.5-1.spec /root/rpmbuild/spec/msttcorefons-2-5-1.spec
 RUN  rpmbuild -bb /root/rpmbuild/spec/msttcorefonts-2.5-1.spec && \
-     dnf install install /root/rpmbuild/RPMS/noarch/msttcorefonts-2.5-1.noarch.rpm
+     dnf install -y /root/rpmbuild/RPMS/noarch/msttcorefonts-2.5-1.noarch.rpm
 
 COPY belphegor/main.py /opt/main.py
 WORKDIR /opt
