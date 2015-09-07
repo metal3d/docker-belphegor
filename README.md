@@ -23,7 +23,7 @@ docker run -it -p 8000:8000 -e NUMWORKER=8 metal3d/belphegor
 If you launch service behind a proxy, you may give environment variable to let belphegor to use it:
 
 ```
-docker run -it -p 8000:8000 -e http_prowy=http://PROXY:PORT metal3d/belphegor
+docker run -it -p 8000:8000 -e http_proxy=http://PROXY:PORT metal3d/belphegor
 ```
 
 # Params
@@ -31,11 +31,13 @@ docker run -it -p 8000:8000 -e http_prowy=http://PROXY:PORT metal3d/belphegor
 You may use GET params:
 
 - url: mandatory, the url to capture
-- waitforselector: a CSS selector to wait before to make the capture
 - selector: only capture this selector
-- resolution: WxH where W and H are Width and Height in pixel. This set the viewport (default is 1024x768)
+- waitforselector: a CSS selector to wait before to realize the capture
+- waitfortext: wait for that text on the page to realize the capture
+- viewportwidth: with of the virtual browser
+- output: format for output, png or jpg (any other given format will result of a png)
+- lazy: if there are lazy loaded content (images when scroll down for example), this option set to "true" will load page twice (one time to get the real height, and another time to get images)
 
-Note that height is adapted if the page is higher.
 
 # Build yourself ?
 
