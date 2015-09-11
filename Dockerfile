@@ -9,23 +9,18 @@ RUN dnf install -y python-pip python-qt4 Xvfb which \
     xorg-x11-fonts-ISO8859-1-100dpi \
     xorg-x11-fonts-Type1            \
     xorg-x11-fonts-misc             \
-    wget rpm-build cabextract ttmkfdir   \
     && dnf clean all  
 
 RUN pip install Ghost.py gunicorn
 
 RUN mkdir -p /root/rpmbuild/specs
 ADD msttcorefonts-2.5-1.spec /root/rpmbuild/spec/msttcorefonts-2.5-1.spec
-RUN  count=0; while [ ! -f /root/rpmbuild/RPMS/noarch/msttcorefonts-2.5-1.noarch.rpm ] && [ $count -lt 10 ]; do \
-         rpmbuild -bb /root/rpmbuild/spec/msttcorefonts-2.5-1.spec; \
-         count=$((count+1)); \
-     done && \
-     dnf install -y /root/rpmbuild/RPMS/noarch/msttcorefonts-2.5-1.noarch.rpm && \
-     rm -rf /root/rpmbuild && \
-     dnf clean all
+ADD msfont.sh /opt/msfont.sh
+ADD entrypoint.sh /usr/local/bin/entrypoint
 
 COPY belphegor/main.py /opt/main.py
 WORKDIR /opt
+ENTRYPOINT ["/bin/bash", "/usr/local/bin/entrypoint"]
 CMD xvfb-run -s "-screen 0 1024x768x24" gunicorn -b 0.0.0.0:8000 -w $NUMWORKER main:app
 
 
