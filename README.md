@@ -54,6 +54,7 @@ You may give those environment variables to the container:
 - `http_proxy`: set `http_proxy` to be use by `dnf` and `belphegor`
 - `ACCEPT_MSCOREFONT_EULA`: activate Microsoft fonts installation
 - `USER_AGENT_SUFFIX`: Always set this string after USER-AGENT (can be overriden by `uasuffix` GET param)
+- `CORS`: Any value is added to "Access-Control-Allow-Origin" headers. Value "true" is replaced by "*"
 
 
 # Params
